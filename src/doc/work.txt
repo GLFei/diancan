@@ -1,0 +1,51 @@
+﻿主要功能
+...
+分工
+...
+规范
+
+数据交互
+axios ,[, jsonp(self)][,后端]
+
+js代码规范
+[eslint]
+
+文件命名规范
+所有模块和组件使用驼峰命名
+
+样式规范
+css  (样式模块化)
+样式命名 使用”—“ 连接单词
+
+组件命名规范
+f-xxx-xxx    (fProductDetail =>f-product-detail)
+
+文件目录结构和项目框架
+vue-cli
+
+---doc 文档
+---src 源码
+------assets 资源文件
+------components 公用组件
+------modules 主要模块
+------router 路由配置
+------main.js 入口文件
+------App.vue 全局组件 (router-view)
+------store 全局状态容器
+---static 静态文件
+---config
+------index.js 配置文件
+---index.html html文件
+
+代码管理工具  
+git/svn   托管:github/马云/coding/gitlab/self-server
+
+
+
+
+
+
+
+
+
+
