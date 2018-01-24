@@ -33,7 +33,6 @@ export default {
   .header-title{
       flex:1;
   }
-  .fl{float:left}
-  .fr{float:right}
+
 
 </style>

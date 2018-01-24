@@ -1,14 +1,18 @@
 <template>
     <el-container>
-        <el-header>
-            {{title}}
+        <el-header class="el-header">
+            <f-homeheader> </f-homeheader>
         </el-header>
-        <el-aside>
-            {{aside}}
-        </el-aside>
-        <el-main>
-            {{msg}}
-        </el-main>
+        <el-container>
+            <el-aside width="200px">
+               <f-aside></f-aside>
+            </el-aside>
+            <el-container>
+                <el-main>
+                   main
+                </el-main>
+            </el-container>
+        </el-container>
     </el-container>
 </template>
 <script>
@@ -23,4 +27,9 @@
         }
      }
 </script>
-<style></style>
+<style>
+    .el-header{
+        padding:0;
+        height:80px !important;
+    }
+</style>

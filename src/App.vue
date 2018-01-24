@@ -35,5 +35,8 @@ a{text-decoration:none;}
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
-    }
+}
+.fl{float:left}
+.fr{float:right}
+.text-center{text-align:center;}
 </style>

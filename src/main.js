@@ -15,6 +15,7 @@ import fHeader from '@/components/Header'
 import fContent from '@/components/Content'
 import fHomeHeader from '@/components/HomeHeader'
 import fContainer from '@/components/Container'
+import fAside from '@/components/Aside'
 
 // 使用ElementUI
 Vue.use(ElementUI)
@@ -24,6 +25,7 @@ Vue.component("f-header", fHeader)
 Vue.component("f-content", fContent)
 Vue.component(fContainer.name,fContainer)
 Vue.component(fHomeHeader.name,fHomeHeader)
+Vue.component(fAside.name,fAside)
 Vue.config.productionTip = true
 
 /* eslint-disable no-new */

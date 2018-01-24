@@ -30,6 +30,7 @@ export default {
 </script>
 <style>
   .home-header{
+    height:80px;
     background:#742828;
     width:100%;
   }
@@ -37,10 +38,11 @@ export default {
     display:flex;
     text-align:center;
     align-items:center;
-    padding:8px 15px 8px 0;
+    height:50px;
+    padding:15px 15px 15px 0;
   }
   .home-header-item-btn{
-    width:300px;
+    width:200px;
   }
   .logo-en{
     font-size:12px;
