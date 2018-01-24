@@ -11,29 +11,44 @@
         <p>八大菜系</p>
     </div>
     <div class="f-aside-lists text-center">
-        <ul>
-            <li v-for="(ele,index) in foodType" :key="index">{{ele}}</li>
+        <ul  v-for="(ele,index) in foodType">
+        <router-link :to="'/class?classType='+index">
+            <li :key="index" @click="changeFoodTypeAction(index)">      
+                <p v-if="ele.state"><img src="@/assets/images/home1.png"><span></span></p>
+                <span>{{ele.name}}</span>
+            </li>
+        </router-link>
         </ul>
     </div>
-    <div>
-        <p><i></i><span>呼叫</span></p>
-        <p><i></i><span>订单</span></p>
-        <p><i></i><span>更多</span></p>
+    <div class="f-aside-bottom">
+        <p><i class="iconfont icon-voice"></i><span>呼叫</span></p>
+        <p><i class="iconfont icon-note"></i><span>订单</span></p>
+        <p><i class="iconfont icon-moreclass"></i><span>更多</span></p>
     </div>
 </div>
 </template>
 <script>
+import {mapGetters,mapActions} from 'vuex'
     export default {
         name: 'f-aside',
         data () {
             return{
-                foodType:["浙菜","湘菜","闽菜","粤菜","苏菜","川菜","鲁菜","徽菜"]
             }
         },
+        computed:{
+            ...mapGetters("home",["foodType"])
+           
+        },
+        methods:{
+            ...mapActions("home",["changeFoodTypeAction"])
+        },
+        mounted(){
+             console.log(this.foodType)
+        }
     }
 </script>
 <style>
-    .f-aside{background:#742828;}
+    .f-aside{background:#742828;min-height:600px;}
     .f-aside-top{
         font-size:12px;
     }
@@ -44,10 +59,37 @@
         padding:8px 0;
     }
     .f-aside-lists{
-        font-size:16px;
+        font-size:20px;
     }
     .f-aside-lists li{
+        position:relative;
         padding:10px 0;
     }
-    
+    .f-aside-lists li p{
+        width:100%;
+        position:absolute;
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+    }
+    .f-aside-lists li p span{
+        width:40px;
+        height:2px;
+        background:rgba(255,255,255,0.5);
+    }
+    .f-aside-bottom{
+        margin-top:20px;
+        display:flex;
+        font-size:18px;
+        justify-content:space-around;
+        padding:0 2px;
+    }
+    .f-aside-bottom p{
+        display:flex;
+        flex-direction:column;
+        text-align:center;
+    }
+    .f-aside-bottom .iconfont{
+        font-size:26px;
+    }
 </style>

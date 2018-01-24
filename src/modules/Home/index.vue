@@ -1,5 +1,5 @@
 <template>
-    <f-container></f-container>
+    <div>home</div>
 </template>
 <script>
     export default {

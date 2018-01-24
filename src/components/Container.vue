@@ -8,8 +8,8 @@
                <f-aside></f-aside>
             </el-aside>
             <el-container>
-                <el-main>
-                   main
+                <el-main style="color:red">
+                   <router-view></router-view>
                 </el-main>
             </el-container>
         </el-container>
