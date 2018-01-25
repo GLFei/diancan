@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Login from '@/modules/User/Login'
 import Home from '@/modules/Home'
 import Container from '@/components/Container'
+import Main from '@/modules/Prodata/Main'
+
 
 Vue.use(Router)
 
@@ -19,7 +21,7 @@ export default new Router({
       component: Container,
       children: [
         {
-          path: 'home',component:Home
+          path: '',component:Main
         },
         {
           path: 'class*',component:{

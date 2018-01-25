@@ -8,7 +8,7 @@
                <f-aside></f-aside>
             </el-aside>
             <el-container>
-                <el-main style="color:red">
+                <el-main style="color:#333">
                    <router-view></router-view>
                 </el-main>
             </el-container>
@@ -31,5 +31,8 @@
     .el-header{
         padding:0;
         height:80px !important;
+    }
+    .el-main{
+        padding:0;
     }
 </style>
