@@ -15,7 +15,7 @@
         <router-link :to="'/class?classType='+index">
             <li :key="index" @click="changeFoodTypeAction(index)">      
                 <p v-if="ele.state"><img src="@/assets/images/home1.png"><span></span></p>
-                <span>{{ele.name}}</span>
+                <span class="f-side-class-title">{{ele.name}}</span>
             </li>
         </router-link>
         </ul>
@@ -77,6 +77,7 @@ import {mapGetters,mapActions} from 'vuex'
         height:2px;
         background:rgba(255,255,255,0.5);
     }
+    .f-side-class-title{color:white;}
     .f-aside-bottom{
         margin-top:20px;
         display:flex;
