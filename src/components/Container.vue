@@ -20,9 +20,6 @@
         name: 'f-container',
         data () {
             return {
-                title: '头',
-                aside: '边',
-                msg: '主'
             }
         }
      }

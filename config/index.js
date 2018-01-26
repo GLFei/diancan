@@ -11,11 +11,18 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-		'/laogao': {
-			'target': 'http://10.9.171.96.com',
+		'/api': {
+			'target': 'http://10.9.171.96:3000',
 			changeOrigin: true,
 			pathRewrite: {
-				'^/loho88': ''
+				'^/api': '/api'
+			}
+		},
+    	'/specil': {
+			'target': 'http://10.9.171.96:3000',
+			changeOrigin: true,
+			pathRewrite: {
+				'^/specil': '/specil/api'
 			}
 		}
 	},

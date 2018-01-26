@@ -2,10 +2,10 @@
   <div class = 'home-header'>
     <ul class = 'home-header-items'>
       <li class = 'home-header-item-btn'>
-        <a>
+        <router-link to="/">
           <p>老封酒家</p>
           <p class="logo-en">Old Feng Restaurant</p>
-        </a>
+        </router-link>
       </li>
       <li class="home-header-title">
         <span>20桌</span>
@@ -43,6 +43,9 @@ export default {
   }
   .home-header-item-btn{
     width:200px;
+  }
+  .home-header-item-btn a{
+    color:white;
   }
   .logo-en{
     font-size:12px;

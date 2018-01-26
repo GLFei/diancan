@@ -2,12 +2,12 @@
     <div class="main-page">
         <div>
             <el-carousel trigger="click" height="430px">
-                <el-carousel-item v-for="item in 4" :key="item">
+                <el-carousel-item v-for="item in hotFood" :key="item.foodid">
                     <div class="hot">
-                       <img />
-                       <div>
-                            <p>粤菜</p>
-                            <span>时令性强，夏秋尚清淡，冬春求浓郁</span>
+                       <img :src="item.foodsrc" />
+                       <div v-for="items in foodType" v-if="items.classtype==item.classtype">
+                            <p>{{items.classname}}</p>
+                            <span>{{items.describe}}</span>
                        </div> 
                     </div>
                 </el-carousel-item>
@@ -16,12 +16,12 @@
         <div class="suggest">
             <p>店长推荐</p>
             <ul class="suggest-items">
-                <li v-for="item in 3" :key="item" class="suggest-item">
-                    <img />
+                <li v-for="item in hotFood" :key="item.foodid" class="suggest-item">
+                    <img :src="item.foodsrc"/>
                     <div>
-                        <p class="suggest-name">鲜肉牛展</p>
-                        <p class="suggest-price"><span>￥88</span>
-                        <p class="suggest-level">星级:</p>
+                        <p class="suggest-name">{{item.foodname}}</p>
+                        <p class="suggest-price"><span>￥{{item.foodprice}}</span>
+                        <p class="suggest-level">星级:{{item.foodstart}}</p>
                     </div>
                 </li>
             </ul>
@@ -34,17 +34,16 @@
         name: 'f-main',
         data () {
             return {
-
             }
         },
         computed:{
-
+           ...mapGetters("Prodata",["hotFood","foodType"])
         },
         methods:{
-
+            ...mapActions("Prodata",["getHotFood"])
         },
         mounted(){
-
+            this.getHotFood()
         }
     }
 </script>

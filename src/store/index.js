@@ -1,13 +1,13 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import login from './modules/login'
-import home from './modules/home'
+import Prodata from './modules/Prodata'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    login, home
+    login, Prodata
   }
 })
 

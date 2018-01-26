@@ -11,11 +11,11 @@
         <p>八大菜系</p>
     </div>
     <div class="f-aside-lists text-center">
-        <ul  v-for="(ele,index) in foodType">
-        <router-link :to="'/class?classType='+index">
-            <li :key="index" @click="changeFoodTypeAction(index)">      
+        <ul  v-for="ele in foodType">
+        <router-link :to="'/class?classType='+ele.classtype">
+            <li :key="ele.classtype" @click="changeFoodTypeAction(ele.classtype)">      
                 <p v-if="ele.state"><img src="@/assets/images/home1.png"><span></span></p>
-                <span class="f-side-class-title">{{ele.name}}</span>
+                <span class="f-side-class-title">{{ele.classname}}</span>
             </li>
         </router-link>
         </ul>
@@ -36,14 +36,15 @@ import {mapGetters,mapActions} from 'vuex'
             }
         },
         computed:{
-            ...mapGetters("home",["foodType"])
+            ...mapGetters("Prodata",["foodType"])
            
         },
         methods:{
-            ...mapActions("home",["changeFoodTypeAction"])
+            ...mapActions("Prodata",["getMainClass","changeFoodTypeAction"])
         },
         mounted(){
              console.log(this.foodType)
+             this.getMainClass()
         }
     }
 </script>

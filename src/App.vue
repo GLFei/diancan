@@ -16,10 +16,10 @@ export default {
 html,body{
   width:100%;
   height:100%;
+  color:white;
   }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    color:white;
   font-size:26px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
