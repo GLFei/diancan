@@ -38,6 +38,7 @@ import {mapGetters,mapActions} from 'vuex'
     }
     .foodclass-items{
         height:80%;
+        width:100%;
         padding:20px;
         display:flex;
         justify-content:space-between;
@@ -55,7 +56,7 @@ import {mapGetters,mapActions} from 'vuex'
         padding:8px 15px;
     }
     .foodclass-item img{
-        width:200px !important;
+        width:200px ;
         height:160px;
     }
     .food-dis{

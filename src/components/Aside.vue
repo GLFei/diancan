@@ -22,7 +22,9 @@
     </div>
     <div class="f-aside-bottom">
         <p><i class="iconfont icon-voice"></i><span>呼叫</span></p>
-        <p><i class="iconfont icon-note"></i><span>订单</span></p>
+        <router-link :to="'/order?orderNum='+orderNum">
+            <p><i class="iconfont icon-note"></i><span>订单</span></p>
+        </router-link>
         <p><i class="iconfont icon-moreclass"></i><span>更多</span></p>
     </div>
 </div>
@@ -36,7 +38,7 @@ import {mapGetters,mapActions} from 'vuex'
             }
         },
         computed:{
-            ...mapGetters("Prodata",["foodType"])
+            ...mapGetters("Prodata",["foodType","orderNum"])
            
         },
         methods:{
@@ -85,6 +87,9 @@ import {mapGetters,mapActions} from 'vuex'
         font-size:18px;
         justify-content:space-around;
         padding:0 2px;
+    }
+    .f-aside-bottom a{
+        color:white;
     }
     .f-aside-bottom p{
         display:flex;

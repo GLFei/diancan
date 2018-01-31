@@ -6,36 +6,69 @@
                 <div class="login-contain">
                     <p class="title">首次登陆，亲您先修改密码！</p>
                     <div class="inp-box">
-                        <p>用户名：<input type="text" /></p>
-                        <p>原密码：<input type="text" /></p>
-                        <p>新密码：<input type="text" /></p>
-                        <p>确定密码：<input type="text" /></p>
+                        <p>用户名：<input type="text" v-model="uname"/></p>
+                        <p>原密码：<input type="text" v-model="pswd"/></p>
+                        <p>新密码：<input type="text" v-model="newpswd"/></p>
+                        <p>确定密码：<input type="text" v-model="newpswdchk"/></p>
                     </div>
                     <div  class="inp-box submit-btn">
-                        <p>确定</p>
+                        <p @click="changePwd">确定</p>
                     </div>
                 </div>
             </div>
             <div v-else="initial" class="login-box">
                 <div class="login-contain">
                     <div  class="inp-box">
-                        <p>工号：<input type="text" /></p>
-                        <p>密码：<input type="text" /></p>
+                        <p>工号：<input type="text" v-model="workId"/></p>
+                        <p>密码：<input type="text" v-model="workPswd"/></p>
                     </div>
                     <div  class="inp-box submit-btn">
-                        <p>确定</p>
+                        <p @click="loginIn">确定</p>
                     </div>
                 </div>
             </div>
     </f-content>
 </template>
 <script>
+import {mapGetters,mapActions} from "vuex"
+import axios from 'axios'
+import qs from 'qs'
     export default {
         name: 'f-login',
         data() {
             return {
-                initial: false
+                uname:'',
+                pswd:'',
+                newpswd:'',
+                newpswdchk:'',
+                workId:'',
+                workPswd: ''
             }
+        },
+        computed:{
+            ...mapGetters("login",[
+                "initial","username","password","newpassword"
+            ]),
+        },
+        methods:{
+            ...mapActions("login",[
+                "login","loginout","changePswd"
+            ]),
+            loginIn(){
+                axios.get("/api/login?username="+this.workId+"&password="+this.workPswd).then(res=>{
+                    console.log(res.data)
+                    if(res.data.msgCode==1){
+                        window.localStorage.setItem("token",res.data.token)
+                        var path = this.$route.query.redirect || '/' //从哪来到那去
+                        this.$router.push({path})
+                    }else if(res.data.msgCode==0){
+                        alert(res.data.result)
+                    }else if(res.data.msgCode==2){
+                        alert(res.data.result)
+                    }
+                })
+            },
+            changePwd(){}
         } 
     }
 </script>

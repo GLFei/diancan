@@ -1,7 +1,7 @@
 <template>
   <div class = 'home-header'>
     <ul class = 'home-header-items'>
-      <li class = 'home-header-item-btn'>
+      <li class = 'home-header-item-btn' @click="changeFoodTypeAction(0)">
         <router-link to="/">
           <p>老封酒家</p>
           <p class="logo-en">Old Feng Restaurant</p>
@@ -18,6 +18,7 @@
   </div>
 </template>
 <script>
+import {mapGetters,mapActions} from 'vuex'
 export default {
   name: 'f-homeheader',
   props: {
@@ -25,6 +26,12 @@ export default {
       type: String,
       default: '头部'
     }
+  },
+  computed:{
+    ...mapGetters("Prodata",["foodType"])
+  },
+  methods:{
+    ...mapActions("Prodata",["changeFoodTypeAction"])
   }
 }
 </script>

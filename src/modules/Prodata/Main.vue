@@ -30,12 +30,27 @@
 </template>
 <script>
     import {mapGetters,mapActions} from 'vuex'
+    import axios from 'axios'
     export default {
         name: 'f-main',
         data () {
             return {
             }
-        },
+        },  
+        // beforeRouteEnter (to, from, next) {
+        //     console.log(to,from,next)
+        //     var token = window.localStorage.getItem("token")
+        //     axios.get("/api/requireAuth?token="+token).then(res=>{
+        //         console.log(res.data)
+        //         if(res.data.msgCode==1){
+        //             next()
+        //         }else{
+        //             next({
+        //                 path:'/login'
+        //             })
+        //         }
+        //     })
+        // },
         computed:{
            ...mapGetters("Prodata",["hotFood","foodType"])
         },

@@ -8,14 +8,18 @@ export default {
     foodType:[],
     hotFood:[],//店长推荐
     foodClass:[],//
-    foodDetail:[]
+    foodDetail:[],
+    checkList:[],
+    orderNum:'000000'
   },
   //获取状态参数
   getters: {
     foodType:state=>state.foodType,
     hotFood: state=>state.hotFood,
     foodClass: state=>state.foodClass,
-    foodDetail:state=>state.foodDetail
+    foodDetail:state=>state.foodDetail,
+    checkList:state=>state.checkList,
+    orderNum:state=>state.orderNum
   },
   //修改状态数据
   mutations: {
@@ -38,7 +42,15 @@ export default {
     },
     //分类下菜品
     setFoodDetail(state,payload){
-        state.foodDetail = payload
+      state.foodDetail = payload
+    },
+    //添加菜品到预订单
+    setCheckList(state,payload){
+      state.checkList = payload
+    },
+    setOrderNum(state,payload){
+      console.log("setOrderNum",payload)
+      state.orderNum = payload
     }
   },
   //接受操作，执行与后台的交互
@@ -52,18 +64,23 @@ export default {
     },
     //改变当前选中的菜系
     changeFoodTypeAction(context,payload){
-      axios.get("/api/food/eatclass?classtype="+payload).then(res=>{
-        const foodClass = res.data.result
-        console.log(foodClass)
-        //改变菜单的菜系
-        const foodType = context.state.foodType
-        foodType.map((ele)=>{
-          ele.state = false
+      if(payload ==0){
+          const foodType = changeMenu(payload)
+          context.commit("changeFoodType",{foodType})
+      }else{//改变菜单的菜系
+        axios.get("/api/food/eatclass?classtype="+payload).then(res=>{
+          const foodClass = res.data.result
+          console.log(foodClass)
+          const foodType = changeMenu(payload)
+          context.commit("changeFoodType",{foodType,foodClass})
         })
-        foodType[payload-1].state = true
-        context.commit("changeFoodType",{foodType,foodClass})
-      })
-      
+      }
+      function changeMenu(payload){
+          const foodType = context.state.foodType
+          foodType.map((ele)=>{ele.state = false})
+          foodType[payload-1]&&(foodType[payload-1].state = true)
+          return foodType
+      }
     },
     //获取店长推荐菜品
     getHotFood(context,payload){
@@ -78,6 +95,23 @@ export default {
         console.log(res)
         context.commit("setFoodDetail",res.data)
       })
+    },
+    changeCheckList(context,payload){
+      //setCheckList
+      const {foodId} = payload
+      const {checkList,orderNum} = context.state
+      var ind = checkList.indexOf(foodId)
+      if(ind<0){
+          checkList.push(foodId)
+      }else{
+          checkList.splice(ind,1)
+      }
+      var foodsingle = {foodId,foodnum:1,ordertable:1,ordernum:orderNum}
+      var query = qs.stringify(foodsingle)
+      axios.get("/api/order/template?"+query).then(res=>{
+        context.commit("setOrderNum",res.data.result)
+      })
+      context.commit("setCheckList",checkList)
     }
   }
 }
