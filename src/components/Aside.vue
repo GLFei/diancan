@@ -45,7 +45,6 @@ import {mapGetters,mapActions} from 'vuex'
             ...mapActions("Prodata",["getMainClass","changeFoodTypeAction"])
         },
         mounted(){
-             console.log(this.foodType)
              this.getMainClass()
         }
     }

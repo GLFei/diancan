@@ -1,8 +1,8 @@
 <template>
     <div class="foodclass-box">
         <ul class="foodclass-items">
-            <li v-for="ele in foodClass">
-                <router-link :to="'/detail?foodclass='+ele.eattype">
+            <li v-for="ele in foodClass" class="foodclass-list">
+                <router-link :to="'/detail?classtype='+ele.classtype+'&eattype='+ele.eattype">
                 <div class="foodclass-item" @click="getDetail({classtype:ele.classtype,eattype:ele.eattype})">
                     <img :src="ele.eatsrc" />
                     <div>
@@ -34,18 +34,20 @@ import {mapGetters,mapActions} from 'vuex'
 </script>
 <style scoped>
     .foodclass-box{
-        height:100%;
+        height:80%;
     }
     .foodclass-items{
         height:80%;
-        width:100%;
         padding:20px;
         display:flex;
         justify-content:space-between;
         flex-wrap:wrap;
     }
+    .foodclass-list{
+        width:45%;
+    }
     .foodclass-item{
-        width:49%;
+        padding-left:20px;
         height:160px;
         display:flex;
     }

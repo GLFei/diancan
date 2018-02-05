@@ -9,7 +9,7 @@
             </el-aside>
             <el-container>
                 <el-main style="color:#333">
-                   <router-view></router-view>
+                    <router-view></router-view>
                 </el-main>
             </el-container>
         </el-container>

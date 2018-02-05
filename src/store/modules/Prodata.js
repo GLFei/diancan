@@ -49,7 +49,6 @@ export default {
       state.checkList = payload
     },
     setOrderNum(state,payload){
-      console.log("setOrderNum",payload)
       state.orderNum = payload
     }
   },

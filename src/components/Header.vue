@@ -1,7 +1,9 @@
 <template>
   <div class = 'header'>
     <ul class = 'header-items'>
-      <li class = 'header-item-btn'>{{title}}</li>
+      <li class = 'header-item-btn'>
+        <a href="javascript:window.history.go(-1);">{{title}}</a>
+      </li>
       <li></li>
       <li></li>
     </ul>
@@ -31,6 +33,9 @@ export default {
   .header-item-btn{
     width:130px;
     text-align:center;
+  }
+  .header-item-btn a{
+    color:white;
   }
   .header-title{
       flex:1;

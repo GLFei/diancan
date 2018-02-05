@@ -21,10 +21,16 @@ import {mapGetters,mapActions} from 'vuex'
     export default {
         name: 'f-detail',
         computed:{
-            ...mapGetters("Prodata",["foodDetail","checkList"])
+            ...mapGetters("Prodata",["foodDetail","checkList","foodClass"])
         },
         methods:{
-            ...mapActions("Prodata",["changeCheckList"]),
+            ...mapActions("Prodata",["changeCheckList","getDetail"]),
+        },
+        mounted(){
+            //刷新页面后重新获取  store里拿不到数据
+            if(this.foodDetail.length)console.log(
+                this.getDetail(this.$route.query)
+            )
         }
     }
 </script>

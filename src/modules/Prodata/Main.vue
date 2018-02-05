@@ -2,9 +2,9 @@
     <div class="main-page">
         <div>
             <el-carousel trigger="click" height="430px">
-                <el-carousel-item v-for="item in hotFood" :key="item.foodid">
-                    <div class="hot">
-                       <img :src="item.foodsrc" />
+                <el-carousel-item v-for="item in hotFood" :key="item.foodid" >
+                    <div class="hot" @click="selectHot(item)">
+                       <img :src="item.foodsrc"/>
                        <div v-for="items in foodType" v-if="items.classtype==item.classtype">
                             <p>{{items.classname}}</p>
                             <span>{{items.describe}}</span>
@@ -16,7 +16,7 @@
         <div class="suggest">
             <p>店长推荐</p>
             <ul class="suggest-items">
-                <li v-for="item in hotFood" :key="item.foodid" class="suggest-item">
+                <li v-for="(item,index) in hotFood" v-if="index<4" :key="item.foodid" class="suggest-item" @click="selectHot(item)">
                     <img :src="item.foodsrc"/>
                     <div>
                         <p class="suggest-name">{{item.foodname}}</p>
@@ -37,25 +37,17 @@
             return {
             }
         },  
-        // beforeRouteEnter (to, from, next) {
-        //     console.log(to,from,next)
-        //     var token = window.localStorage.getItem("token")
-        //     axios.get("/api/requireAuth?token="+token).then(res=>{
-        //         console.log(res.data)
-        //         if(res.data.msgCode==1){
-        //             next()
-        //         }else{
-        //             next({
-        //                 path:'/login'
-        //             })
-        //         }
-        //     })
-        // },
         computed:{
            ...mapGetters("Prodata",["hotFood","foodType"])
         },
         methods:{
-            ...mapActions("Prodata",["getHotFood"])
+            ...mapActions("Prodata",["getHotFood","changeFoodTypeAction","getDetail"]),
+            selectHot(arg){
+                console.log(arg)
+                this.changeFoodTypeAction(arg.classtype)
+                this.getDetail({classtype:arg.classtype,eattype:arg.eattype})
+                this.$router.push({path:'/detail'})
+            }
         },
         mounted(){
             this.getHotFood()
