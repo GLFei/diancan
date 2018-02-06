@@ -28,20 +28,25 @@
                     <el-button type="text" @click="orderDelClick(index,ele.foodid)">删除</el-button>
                 </div>
             </li>
-            <li class="order-total">
+            <li class="order-total" v-if="foodList.length">
                 <p class="order-total-check" @click="allSelect({selected:total.selected})"><i :class="{checkbox:true,selected:total.selected}"></i>全选</p>
                 <div class="order-total-box">
                     <p class="order-total-num">共<span >{{total.num}}</span>份</p>
-                    <p class="order-total-price">合计：￥{{total.price}}</p>
-                    <p><span>确认提交</span></p>
+                    <p class="order-total-price">合计：<span>￥{{total.price}}</span></p>
+                    <router-link :to="'/order/progress?ids='+total.ids">
+                        <p class="order-submit-btn">确认提交</p>
+                    </router-link>
                 </div>
+            </li>
+            <li v-else>
+                <p class="order-none">暂无商品</p>
             </li>
         </ul>
     </div>
 </div>
 </template>
 <script>
-import {mapState,mapGetters,mapActions} from 'vuex'
+import {mapGetters,mapActions} from 'vuex'
     export default {
         name: 'f-addOrder',
         data () {
@@ -110,7 +115,11 @@ import {mapState,mapGetters,mapActions} from 'vuex'
         color:#333;
         padding:0 10px;
     }
-    .order-ordernum{font-size:20px;height:26px;height:26px;}
+    .order-ordernum{
+        font-size:20px;
+        height:26px;
+        padding:5px 0;
+    }
     li{
         box-sizing:border-box;
         width:100%;
@@ -127,7 +136,7 @@ import {mapState,mapGetters,mapActions} from 'vuex'
         margin-right:20px;
     }
     .selected{
-        background:gray;
+        background:rgb(255,153,52);
     }
     .order-img img{
         width:80px;
@@ -224,16 +233,33 @@ import {mapState,mapGetters,mapActions} from 'vuex'
         display:flex;
         justify-content:space-between;
         font-size:20px;
+        padding-top:30px;
     }
     .order-total-box{
         flex:1;
         display:flex;
         justify-content:flex-end;
+        align-items:flex-end;
     }
     .order-total-num{
         margin-right:40px;
     }
     .order-total-price{
         margin-right:10px;
+    }
+    .order-total-price span{
+        color:rgb(172,6,26);
+        font-size:24px;
+    }
+    .order-submit-btn{
+       margin-left:30px; 
+       padding:10px 25px;
+       border-radius:5px;
+       font-size:24px;
+       background:rgb(255,153,52);
+       color:white;
+    }
+    .order-none{
+        margin:5px 10px;
     }
 </style>

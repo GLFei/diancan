@@ -25,7 +25,10 @@
         <router-link :to="'/order?orderNum='+orderNum">
             <p><i class="iconfont icon-note"></i><span>订单</span></p>
         </router-link>
-        <p><i class="iconfont icon-moreclass"></i><span>更多</span></p>
+        <p  @click="loginout">
+            <i class="iconfont icon-moreclass"></i>
+            <span>更多</span>
+        </p>
     </div>
 </div>
 </template>
@@ -42,7 +45,11 @@ import {mapGetters,mapActions} from 'vuex'
            
         },
         methods:{
-            ...mapActions("Prodata",["getMainClass","changeFoodTypeAction"])
+            ...mapActions("Prodata",["getMainClass","changeFoodTypeAction"]),
+            loginout(){
+                console.log(window.localStorage.removeItem("token"))
+                this.$router.push({path:"/login"})
+            }
         },
         mounted(){
              this.getMainClass()

@@ -6,7 +6,9 @@ import Container from '@/components/Container'
 import Main from '@/modules/Prodata/Main'
 import Class from '@/modules/Prodata/Class'
 import Detail from '@/modules/Prodata/Detail'
+import OrderPage from '@/modules/Order'
 import AddOrder from '@/modules/Order/AddOrder'
+import Progress from '@/modules/Order/Progress'
 import axios from 'axios'
 
 Vue.use(Router)
@@ -28,7 +30,6 @@ const router =  new Router({
         {
           path: '',
           component:Main, 
-          meta:{requiresAuth:true}
         },
         {
           path: 'class*',component:Class
@@ -40,8 +41,18 @@ const router =  new Router({
     },
     {
       path:'/order',
-      name: 'f-order',
-      component:AddOrder,
+      //name: 'f-order'
+      component:OrderPage,
+      children:[
+        {
+          path:'',
+          component:AddOrder
+        },
+        {
+          path: 'progress',
+          component:Progress
+        }
+      ]
     }
   ]
 })

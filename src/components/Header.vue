@@ -1,11 +1,15 @@
 <template>
   <div class = 'header'>
     <ul class = 'header-items'>
-      <li class = 'header-item-btn'>
-        <a href="javascript:window.history.go(-1);">{{title}}</a>
+      <li class = 'header-item-btn header-left'>
+          <a href="javascript:window.history.go(-1);">{{title}}</a>
       </li>
-      <li></li>
-      <li></li>
+      <li class = 'header-center'>
+        <slot name="center"></slot>
+      </li>
+      <li class = "header-item-btn header-right">
+          <slot name="right"></slot>
+      </li>
     </ul>
   </div>
 </template>
@@ -31,15 +35,20 @@ export default {
     display:flex;
   }
   .header-item-btn{
-    width:130px;
     text-align:center;
   }
   .header-item-btn a{
     color:white;
   }
-  .header-title{
+  .header-left{
+    padding-left:20px;
+  }
+  .header-center{
+      text-align:center;
       flex:1;
   }
-
+  .header-right{
+    padding-right:20px;
+  }
 
 </style>

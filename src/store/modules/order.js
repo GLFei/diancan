@@ -50,6 +50,12 @@ export default {
       state.foodList.forEach((ele)=>{
         ele.selected = !selected
       })
+    },
+    //删除商品之后 也要更新返回页面中store的信息
+    delFood(state,{foodid}){
+      var del = this.state.Prodata.checkList.indexOf(foodid)
+      this.state.Prodata.checkList.splice(del,1)
+      console.log(this.state.Prodata.checkList)
     }
   },
   //接受操作，执行与后台的交互
@@ -76,12 +82,12 @@ export default {
     },
     //删除商品
     delFood(context,payload){
-      console.log(payload)
       const {ordernum,foodid,index,cb} = payload
       var qsStr = qs.stringify({ordernum,foodid})
       axios.get("/api/order/del?"+qsStr).then(res=>{
         if(res.data.msgCode ===1){
           context.state.foodList.splice(index,1) //移除数组中的商品
+          context.commit("delFood",{foodid})
           cb&&cb() 
         }
       })
