@@ -86,9 +86,10 @@ export default {
       var qsStr = qs.stringify({ordernum,foodid})
       axios.get("/api/order/del?"+qsStr).then(res=>{
         if(res.data.msgCode ===1){
+
           context.state.foodList.splice(index,1) //移除数组中的商品
           context.commit("delFood",{foodid})
-          cb&&cb() 
+          cb&&cb()
         }
       })
     },
